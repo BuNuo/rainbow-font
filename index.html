@@ -1,0 +1,156 @@
+﻿<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>jQuery实现彩虹文字效果</title>
+<link rel="stylesheet" href="style.css" type="text/css" media="screen"></link>
+	
+<style type="text/css" media="screen">
+	.demo {
+		padding: 50px;
+		border:1px solid #ccc;
+		font-weight:bold;
+		color: red;
+		background:#d0d0d0;
+		font-size:20px;
+		line-height:1.5;
+		text-align:center;
+	}
+
+	.demo h1 { font-size:72px;  text-transform:uppercase; margin-bottom:0px;}
+	.char2, #demo2 .word2, .line2 { color: orange; }
+	.char3, .word3, .line3 { color: yellow; }
+	.char4, .line4 { color: blue; }
+	.char5 { color: green; }
+	.char6 { color: indigo; }
+	.char7 { color: violet; }
+</style>
+  <script src="jquery-1.8.3.min.js"></script>
+  <script src="jquery.lettering.js"></script>
+  <script>
+  	$(document).ready(function() {
+
+  		//$("#demo1 h1").lettering();
+		//$("#demo2 h1").lettering('words');
+  		var f = ['arial','verdana','monospace','consolas','impact','helveltica'];
+		var c = ['1ABC9C','3498DB','34495E','E67E22','E74C3C','2ECC71','E74C3C','95A5A6','D35400'];
+		$("#demo1 h1").lettering();
+		$("#demo1 h1").each(function(index,item){
+			$(this).children("span").each(function(ind, itm){
+			   var sh = c[Math.floor(Math.random() * c.length)]
+			   $(this).css("color", "#" + sh);
+
+			   var r = f[Math.floor(Math.random() * f.length)]
+			   $(this).css("font-family", r);
+			   	
+			   $(this).css("text-shadow", '0px 1px 0px #'+sh+',0px 2px 0px #'+sh+',0px 3px 0px #'+sh+',0px 4px 0px #'+sh+', 0px 5px 0px  #'+sh+',0px 6px 0px #'+sh+', 0px 7px 0px #'+sh+',0px 8px 7px #'+sh);
+			});
+		});
+
+		$("#demo2 h1").lettering('words');
+		$("#demo2 h1").each(function(index,item){
+			$(this).children("span").each(function(ind, itm){
+			   var sh = c[Math.floor(Math.random() * c.length)]
+			   $(this).css("color", "#" + sh);
+
+			   var r = f[Math.floor(Math.random() * f.length)]
+			   $(this).css("font-family", r);
+			   	
+			   $(this).css("text-shadow", '0px 1px 0px #'+sh+',0px 2px 0px #'+sh+',0px 3px 0px #'+sh+',0px 4px 0px #'+sh+', 0px 5px 0px  #'+sh+',0px 6px 0px #'+sh+', 0px 7px 0px #'+sh+',0px 8px 7px #'+sh);
+			});
+		});
+		$("#demo3 p").lettering('lines');
+		$("#demo3 p").each(function(index,item){
+			$(this).children("span").each(function(ind, itm){
+			   var sh = c[Math.floor(Math.random() * c.length)]
+			   $(this).css("color", "#" + sh);
+			   var r = f[Math.floor(Math.random() * f.length)]
+			   $(this).css("font-family", r);
+			});
+		});
+		$("#demo4 h1").lettering('words').children("span").lettering();
+		$("#demo5 h1").lettering().children("span").css({'display':'inline-block', '-webkit-transform':'rotate(-25deg)'});
+			
+	});
+  </script>
+
+</head>
+
+<body>
+
+  <div id="container">
+    <header>
+			<h1 id="thebrand">Lettering.JS</h1>
+			<p>LETTERING.JS 实现彩虹文字</p>
+    </header>
+    
+    <article id="main">
+    	    <!-- demo1 -->
+			<section id='lettering-demo'>
+				<h2>Letters</h2>
+				<h4>The HTML</h4>
+				<pre><code>	&lt;div id=&quot;demo1&quot; class=&quot;demo&quot;&gt;
+				&nbsp;&nbsp;&lt;h1&gt;Rainbow&lt;/h1&gt;&lt;/div&gt;</code></pre>
+
+				<h4>The jQuery</h4>
+				<pre><code>$(document).ready(function() {
+				&nbsp;&nbsp;$("#demo1 h1").lettering();});</code></pre>
+
+				<h4>The Result</h4>
+				<div id="demo1" class="demo">
+					<h1>Rainbow</h1>
+				</div>
+				
+			</section>
+            
+            <!-- demo2 -->
+			<section id='words-demo'>
+				<h2>Words</h2>
+				<code><pre>$("#demo2 h1").lettering('words');</pre></code>
+
+				<h4>The Result</h4>
+				<div id="demo2" class="demo">
+					<h1>Hi, Multi Color</h1>
+				</div>
+			</section>
+            
+            <!-- demo3 -->
+			<section id='lines-demo'>
+				<h2>Lines</h2>
+				<code><pre>$("#demo3 p").lettering('lines');</pre></code>
+
+			<h4>The Result</h4>
+				<div id="demo3" class="demo">
+					<p>This is an amazing<br/> Revolution in Typography. <br/> The possibilities are endless: <br/> Coloring, Vertical spacing, and Kerning.</p>
+				</div>
+			</section>
+            
+            <!-- demo4 -->
+			<section id='advanced1-demo'>
+				<h2>Advanced #1: Chaining 2 Methods</h2>
+				<code><pre>$("#demo4 h1").lettering('words').children("span").lettering();</pre></code>
+				<h4>The Result</h4>
+				<div id="demo4" class="demo">
+					<h1>Double Rainbow</h1>
+				</div>
+			</section>
+            
+            <!-- demo5 -->
+			<section id='advanced2-demo'>
+				<h2>Advanced #2: Chaining and Styling</h2>
+				<code><pre>$("#demo5 h1").lettering()
+					.children("span").css({'display':'inline-block', '-webkit-transform':'rotate(-25deg)'});</pre></code>
+				<h4>The Result</h4>
+				<div id="demo5" class="demo">
+					<h1>WOOOoo!</h1>
+				</div>
+			</section>
+
+    </article>
+   
+  </div> 
+<div style="text-align:center;clear:both">
+<p>适用浏览器：IE8、360、FireFox、Chrome、Safari、Opera、傲游、搜狗、世界之窗. </p>
+<p>来源：<a href="http://sc.chinaz.com/" target="_blank">站长素材</a></p>
+</div>
+</body>
+</html>
